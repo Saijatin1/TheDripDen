@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-container">
+    <!-- Text Left -->
+    <div class="hero-text">
+      <h1>Find Clothes That Matches Your Style</h1>
+      <p>
+        Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
+      </p>
+      <a href="#products" class="btn-primary">Shop Now</a>
+      <div class="stats">
+        <div><strong>200+</strong><p>International Brands</p></div>
+        <div><strong>2,000+</strong><p>High-Quality Products</p></div>
+        <div><strong>30,000+</strong><p>Happy Customers</p></div>
+      </div>
+    </div>
+    <!-- Image Right -->
+    <div class="hero-image">
+      <img src="{% static 'assets/img.png' %}" alt="Hero Image">
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section class="section" id="products">
+  <h2 class="section-title">Our Products</h2>
+  <div class="product-grid">
+    {% for product in products %}
+      <div class="product-card">
+        <div class="product-image">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-details">
+          <h4>{{ product.name }}</h4>
+          <p class="price">
+            {% if product.is_sale %}
+              <span class="sale">${{ product.sale_price }}</span> 
+              <span class="old-price">${{ product.price }}</span>
+            {% else %}
+              ${{ product.price }}
+            {% endif %}
+          </p>
+          <p class="category">{{ product.Category }}</p>
+          <a class="btn-secondary" href="{% url 'product' product.id %}">View Product</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Category Section -->
+<section class="categories">
+  <h2 class="section-title">Shop by Category</h2>
+  <p class="section-subtitle">Explore our carefully curated collections designed to match every style and occasion</p>
+  <div class="category-grid">
+    <div class="category-card">
+  <img src="{% static 'assets/R.jpg' %}" alt="Men's Fashion">
+  <div class="category-overlay">
+    <a href="#products" class="btn-primary">Shop Now</a>
+  </div>
+  <div class="category-content">
+    <h3>Men's Fashion</h3>
+  </div>
+</div>
+
+    <div class="category-card">
+  <img src="{% static 'assets/R.jpg' %}" alt="Men's Fashion">
+  <div class="category-overlay">
+    <a href="#products" class="btn-primary">Shop Now</a>
+  </div>
+  <div class="category-content">
+    <h3>WoMen's Fashion</h3>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>TheDripDen</h3>
+      <p>Your ultimate destination for fashion that matches your unique style. Discover quality clothing from 200+ international brands.</p>
+      <div class="socials">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#products">All Products</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Sale</a></li>
+        <li><a href="#">New Arrivals</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns & Exchanges</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Get in Touch</h4>
+      <p>📍 123 Fashion Street, NY 10001</p>
+      <p>📞 +1 (555) 123-4567</p>
+      <p>📧 hello@thedripden.com</p>
+      <form class="subscribe">
+        <input type="email" placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/update_user.css' %}">
+
+<section class="profile-hero">
+  <div class="profile-hero__inner">
+    <h1>Update User Profile</h1>
+    <p>Manage your account details</p>
+  </div>
+</section>
+
+<main class="profile-wrap">
+  <div class="form-card">
+    <form method="POST" action="{% url 'update_user' %}">
+      {% csrf_token %}
+      {{ user_form.as_p }}
+      <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+
+    <a href="{% url 'update_password' %}" class="btn btn-outline mt-12">Update Password</a>
+  </div>
+</main>
+{% endblock %}

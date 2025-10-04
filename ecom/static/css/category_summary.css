@@ -1,0 +1,38 @@
+/* Categories Grid */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  padding: 0 5vw;
+  margin-top: 40px;
+  justify-items: center;
+}
+
+/* Category Cards / Buttons */
+.category-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 20px;
+  background: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+  background: #000;
+  color: #fff;
+}
+
+/* Hero adjustments (reuse same as product page) */
+.hero { height:40vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; }
+.hero h1 { font-size:3rem; font-weight:800; margin-bottom:10px; }
+.hero p { font-size:1.1rem; color:#555; }
+.section-title { font-size:2.5rem; font-weight:700; margin-bottom:40px; }

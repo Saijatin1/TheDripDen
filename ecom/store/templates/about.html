@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<!-- Hero Section -->
+<section class="about-hero">
+  <div class="container text-center">
+    <h1>Built with Django, Crafted with Purpose</h1>
+    <p>A modern, minimalist e-commerce platform featuring user auth, product catalog, cart & check-out flow, and order tracking—powered by Django, styled with intention.</p>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="about-section">
+  <div class="container grid">
+    <div class="feature">
+      <h3>Authentication</h3>
+      <p>Signup, login, profile & password management.</p>
+    </div>
+    <div class="feature">
+      <h3>Shopping Cart</h3>
+      <p>Persistent cart with add/remove/update functionality.</p>
+    </div>
+    <div class="feature">
+      <h3>Checkout & Orders</h3>
+      <p>Shipping flow, order generation, and history tracking.</p>
+    </div>
+    <div class="feature">
+      <h3>Search & Categories</h3>
+      <p>Product filtering, search, and category browsing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack & Future -->
+<section class="about-section">
+  <div class="container two-col">
+    <div>
+      <h2>Tech Stack</h2>
+      <ul>
+        <li>Django & Python</li>
+        <li>HTML & CSS (minimal, semantic)</li>
+        <li>SQLite (default), PostgreSQL-ready</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Future Roadmap</h2>
+      <ul>
+        <li>Real payment integration (Razorpay/Stripe)</li>
+        <li>Admin dashboard for shipping management</li>
+        <li>Cloud deployment with PostgreSQL hosting</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Author Section -->
+<section class="about-section text-center">
+  <div class="container">
+    <h2>👋 Made by Me</h2>
+    <p>This project was crafted with love & learning. If you'd like to connect, feel free to reach out:</p>
+    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-ID" target="_blank" 
+       class="btn btn-dark mt-3">Connect on LinkedIn</a>
+  </div>
+</section>
+{% endblock %}

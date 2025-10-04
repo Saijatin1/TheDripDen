@@ -1,0 +1,142 @@
+/* Page reset & layout */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content {
+  flex: 1; /* pushes footer down */
+}
+
+/* Hero */
+.hero.small-hero {
+  background: #fff;
+  padding: 3rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+.hero-text h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #111;
+}
+.hero-text p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Search Box */
+.search-section {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.search-box form {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 50px;
+  padding: 0.3rem 0.6rem;
+  width: 100%;
+  max-width: 480px;
+  border: 1px solid #ddd;
+}
+.search-box input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  border-radius: 50px;
+}
+.search-box button {
+  background: #fff;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 60%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.search-box button:hover {
+  border: 2px solid black;
+}
+.search-box button img {
+  width: 18px;
+  height: 18px;
+  filter: invert(1);
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  padding-left: 5%;
+  color: #111;
+}
+
+/* Product Grid */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 0 5% 4rem;
+}
+.product-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.product-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+}
+.product-img img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.product-info {
+  padding: 1rem;
+  text-align: left;
+}
+.product-info h4 {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: #111;
+}
+.price {
+  font-size: 0.95rem;
+  margin: 0.4rem 0;
+}
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 0.5rem;
+}
+.new-price {
+  color: #e63946;
+  font-weight: 600;
+}
+.category {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* Empty Results */
+.no-results {
+  font-size: 1.1rem;
+  text-align: center;
+  color: #999;
+}
+
+/* Footer fix */
+footer {
+  margin-top: auto;
+}

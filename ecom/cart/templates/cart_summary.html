@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/cart_summary.css' %}">
+
+<header class="cart-header">
+  <h1>Shopping Cart</h1>
+  <p>View and update your cart</p>
+</header>
+
+<main class="cart-container">
+  {% if cart_products %}
+    <div class="cart-list">
+      {% for product in cart_products %}
+        <div class="cart-item">
+          <!-- Product Image -->
+          <div class="cart-img">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
+
+          <!-- Product Info -->
+          <div class="cart-info">
+            <h3>{{ product.name }}</h3>
+            <p class="desc">{{ product.description }}</p>
+
+            {% if product.is_sale %}
+              <div class="price">
+                <span class="old">${{ product.price }}</span>
+                <span class="new">${{ product.sale_price }}</span>
+                <span class="badge">Sale</span>
+              </div>
+            {% else %}
+              <div class="price">
+                <span class="new">${{ product.price }}</span>
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Quantity -->
+          <div class="cart-qty">
+            <label for="select{{ product.id }}">Qty</label>
+            <select id="select{{ product.id }}">
+              {% for key,value in quantities.items %}
+                {% if key == product.id|slugify %}
+                  <option selected>{{ value }}</option>
+                {% endif %}
+              {% endfor %}
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <!-- Actions -->
+          <div class="cart-actions">
+            <button data-index="{{ product.id }}" class="update-cart">Update</button>
+            <button data-index="{{ product.id }}" class="delete-product danger">Remove</button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Order Summary -->
+    <aside class="order-summary">
+      <h2>Order Summary</h2>
+      <div class="summary-line">
+        <span>Total</span>
+        <span class="total">${{ totals }}</span>
+      </div>
+    </aside>
+  {% else %}
+    <p class="empty-cart">There's nothing in the cart...</p>
+  {% endif %}
+</main>
+
+<script>
+  // Update Cart
+  $(document).on('click','.update-cart',function(e){
+    e.preventDefault();
+    let productid=$(this).data('index');
+    $.ajax({
+      type:'POST',
+      url:'{% url "cart_update" %}',
+      data:{
+        product_id: productid,
+        product_qty: $('#select'+productid+' option:selected').val(),
+        csrfmiddlewaretoken:'{{csrf_token}}',
+        action:'post'
+      },
+      success:function(){ location.reload(); }
+    });
+  });
+
+  // Delete Product
+  $(document).on('click','.delete-product',function(e){
+    e.preventDefault();
+    $.ajax({
+      type:'POST',
+      url:'{% url "cart_delete" %}',
+      data:{
+        product_id: $(this).data('index'),
+        csrfmiddlewaretoken:'{{csrf_token}}',
+        action:'post'
+      },
+      success:function(){ location.reload(); }
+    });
+  });
+</script>
+{% endblock %}
