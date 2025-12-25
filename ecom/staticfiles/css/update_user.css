@@ -1,0 +1,153 @@
+/* ===== Theme (match site-wide black/white aesthetic) ===== */
+:root{
+  --bg: #f7f7f8;          /* page background */
+  --surface: #ffffff;     /* cards */
+  --text: #111111;        /* primary text */
+  --muted: #6b7280;       /* secondary text (gray-500/600) */
+  --border: #e5e7eb;      /* soft borders */
+  --accent: #111111;      /* primary buttons/links */
+  --accent-hover: #222222;
+  --ring: rgba(17,17,17,.15);
+  --shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+/* Scope styling to this page only (no global overrides) */
+.profile-hero{
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 16px;
+}
+.profile-hero__inner{
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.profile-hero h1{
+  margin: 0 0 8px;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--text);
+  font-weight: 700;
+}
+.profile-hero p{
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* Layout */
+.profile-wrap{
+  background: var(--bg);
+  padding: 48px 16px 72px;
+  display: flex;
+  justify-content: center;
+}
+.form-card{
+  width: 100%;
+  max-width: 560px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+/* Django {{ form.as_p }} defaults */
+.form-card form p{
+  margin: 0 0 16px;
+}
+.form-card label{
+  display:block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+.form-card input,
+.form-card select,
+.form-card textarea{
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* Errors from Django forms */
+.form-card .errorlist{
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ffd6d6;
+  background: #fff3f3;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .06s ease, background .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn:active{ transform: translateY(1px); }
+
+.btn-primary{
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+  padding: 12px 16px;
+  font-size: 1rem;
+}
+.btn-primary:hover{
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-outline{
+  width: 100%;
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--text);
+  padding: 11px 16px;
+  font-size: 0.96rem;
+}
+.btn-outline:hover{
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
+}
+
+.mt-12{ margin-top: 12px; }
+
+/* Footer stays at bottom (if your base doesn't already handle it) */
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer{ margin-top: auto; }
+
+/* Small screens */
+@media (max-width: 480px){
+  .form-card{ padding: 22px; }
+  .btn-primary, .btn-outline{ font-size: .95rem; }
+}
