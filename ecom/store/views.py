@@ -174,23 +174,25 @@ def logout_user(request):
 
 
 def register_user(request):
-    form=SignUpForm()
-    if request.method=='POST':
-        form=SignUpForm(request.POST)
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            username=form.cleaned_data['username']
-            password=form.cleaned_data['password1']
-            #we will login user now
-            user=authenticate(username=username,password=password)
-            login(request,user)
-            messages.success(request,("userbname created plaese fill out you other info"))
+
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+
+            user = authenticate(username=username, password=password)
+            login(request, user)
+
+            messages.success(request, "Account created successfully! Please complete your profile.")
             return redirect('update_info')
         else:
-            print(form.errors)
-            messages.success(request,('oops! there was a problem registering please try agian'))
-            return redirect('register')
+            messages.error(request, "Please correct the errors below.")
+            return render(request, 'register.html', {'form': form})
     else:
-        return render(request,'register.html',{'form':form})
+        form = SignUpForm()
+        return render(request, 'register.html', {'form': form})
+
     
 

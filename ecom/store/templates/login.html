@@ -1,40 +1,44 @@
-{%extends 'base.html' %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Login</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Login to your account</p>
-                </div>
-            </div>
-        </header>
-        <div class="container">
-            <div class="row">
-                <center>
-                    <div class="col-8">
-                        
-                        <br><br>
-                        <form method="POST" action="{% url 'login' %}">
-                            {% csrf_token %}
-  <div class="form-group">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
 
-    <input type="text" class="form-control" placeholder="Enter Username" name="Username">
-   
-  </div>
-  <br>
-  <div class="form-group">
-    
-    <input type="password" class="form-control" name="password" placeholder="Enter your Password">
-  </div>
-  <br>
-  <button type="submit" class="btn btn-secondary">Login</button>
-</form>
-                        <br><br>
-                        <br><br>
-                        <br><br>
-                    </div>
-                </center>
-            </div>
+<section class="auth-wrapper">
+    <div class="auth-container">
+
+        <!-- LEFT: FORM -->
+        <div class="auth-left">
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-subtitle">Log in to continue your shopping journey with TheDripDen.</p>
+
+            <form method="POST" action="{% url 'login' %}" class="auth-form">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="Username" placeholder="Enter your username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="btn-auth">Login</button>
+
+                <p class="auth-footer">
+                    Don't have an account? <a href="{% url 'register' %}">Sign up</a>
+                </p>
+            </form>
         </div>
+
+        <!-- RIGHT: IMAGE -->
+        <div class="auth-right">
+            <img src="{% static 'assets/login-banner.jpg' %}" alt="Fashion Login Banner">
+        </div>
+
+    </div>
+</section>
+
 {% endblock %}
